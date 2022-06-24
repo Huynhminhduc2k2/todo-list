@@ -5,6 +5,15 @@ const CreateTask = ({ modal, toogle }) => {
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "taskName") {
+      setTaskName(value);
+    } else {
+      setDescription(value);
+    }
+  };
   return (
     <Modal isOpen={modal} toggle={toogle}>
       <ModalHeader toggle={toogle}>Create Task</ModalHeader>
@@ -12,7 +21,13 @@ const CreateTask = ({ modal, toogle }) => {
         <form>
           <div className="form-group">
             <label>Task Name</label>
-            <input type="text" className="form-control" value={taskName} />
+            <input
+              type="text"
+              className="form-control"
+              value={taskName}
+              onChange={handleChange}
+              name="taskName"
+            />
           </div>
           <br />
           <div className="form-group">
@@ -21,6 +36,8 @@ const CreateTask = ({ modal, toogle }) => {
               rows="5"
               className="form-control"
               value={description}
+              onChange={handleChange}
+              name="description"
             ></textarea>
           </div>
         </form>
