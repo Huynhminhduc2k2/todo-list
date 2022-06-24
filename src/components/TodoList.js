@@ -14,6 +14,7 @@ const TodoList = () => {
     let tempList = taskList;
     tempList.push(taskObj);
     setTaskList(tempList);
+    setModal(false);
   };
 
   return (
