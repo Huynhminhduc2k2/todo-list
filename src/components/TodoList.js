@@ -1,11 +1,21 @@
 import React, { useState } from "react";
+import { List } from "reactstrap";
 import CreateTask from "../modals/CreateTask";
 
 const TodoList = () => {
   const [modal, setModal] = useState(false);
+  const [taskList, setTaskList] = useState([]);
+
   const toggle = () => {
     setModal(!modal);
   };
+
+  const saveTask = (taskObj) => {
+    let tempList = taskList;
+    tempList.push(taskObj);
+    setTaskList(tempList);
+  };
+
   return (
     <>
       <div className="header">
@@ -16,8 +26,12 @@ const TodoList = () => {
           Create Task{" "}
         </button>
       </div>
-      <div className="task-container"></div>
-      <CreateTask toggle={toggle} modal={modal} />
+      <div className="task-container">
+        {taskList.map((obj) => (
+          <li>{obj.Name}</li>
+        ))}
+      </div>
+      <CreateTask toggle={toggle} modal={modal} save={saveTask} />
     </>
   );
 };

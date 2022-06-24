@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
-const CreateTask = ({ modal, toogle }) => {
+const CreateTask = ({ modal, toogle, save }) => {
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
 
@@ -14,9 +14,16 @@ const CreateTask = ({ modal, toogle }) => {
       setDescription(value);
     }
   };
+
+  const handleSave = () => {
+    let taskObj = {};
+    taskObj["Name"] = taskName;
+    taskObj["Description"] = description;
+    save(taskObj);
+  };
   return (
-    <Modal isOpen={modal} toggle={toogle}>
-      <ModalHeader toggle={toogle}>Create Task</ModalHeader>
+    <Modal isOpen={modal} toggle={function noRefCheck() {}}>
+      <ModalHeader toggle={function noRefCheck() {}}>Create Task</ModalHeader>
       <ModalBody>
         <form>
           <div className="form-group">
@@ -43,10 +50,10 @@ const CreateTask = ({ modal, toogle }) => {
         </form>
       </ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={toogle}>
+        <Button color="primary" onClick={handleSave}>
           Create
         </Button>{" "}
-        <Button color="secondary" onClick={toogle}>
+        <Button color="secondary" onClick={function noRefCheck() {}}>
           Cancel
         </Button>
       </ModalFooter>
